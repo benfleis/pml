@@ -33,7 +33,7 @@ def plot_it(w=None, b=None):
     import seaborn as sns
     x_max, y_max = 50, 50
     sns.set()
-    plt.axis([0, x_max, 0, y_max])
+    plt.axis((0, x_max, 0, y_max))
     plt.xticks(fontsize=10)
     plt.yticks(fontsize=10)
     plt.xlabel("Reservations", fontsize=12)
