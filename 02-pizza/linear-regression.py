@@ -48,7 +48,7 @@ def plot_it(w=None, b=None):
     plt.show()
 
 # %% Cell 5
-w, b = train(X, Y, iterations=10000, lr=0.01)
+w, b = train(X, Y, iterations=1000000, lr=0.0001)
 print(f'w={w:.3f}, b={b:.3f}')
 
 x = 20
