@@ -39,12 +39,5 @@ def test(X ,Y, w):
     print(f'Success: {correct_results}/{total_examples} ({success_rate:.3f})')
 
 
-def train(X, Y, iterations, lr):
-    w = np.zeros((X.shape[1], 1))
-    for i in range(iterations):
-        print(f'Iteration {i:4d} => Loss: {loss(X, Y, w):.20f}')
-        w -= gradient(X, Y, w) * lr
-    return w
-
 w = train(data.X_train, data.Y_train, iterations=100, lr=1e-5)
 test(data.X_test, data.Y_test, w)
