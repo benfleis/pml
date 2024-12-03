@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
 
-# %% Cell 1
+# %%
 import numpy as np
+import mnist as data
 
-# %% Cell 2
-x1, x2, x3, y = np.loadtxt("police.txt", skiprows=1, unpack=True)
-X = np.column_stack((np.ones(x1.size), x1, x2, x3))
-Y = y.reshape(-1, 1)
-
-# %% Cell 3
+# %%
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
@@ -39,9 +35,16 @@ def test(X ,Y, w):
     total_examples = X.shape[0]
     correct_results = np.sum(classify(X, w) == Y)
     success_rate = float(correct_results) / total_examples
-    print(f'Weights: {w.T[0]}')
+    #print(f'Weights: {w.T[0]}')
     print(f'Success: {correct_results}/{total_examples} ({success_rate:.3f})')
 
-# %% Cell 4
-w = train(X, Y, iterations=10000, lr=0.001)
-test(X, Y, w)
+
+def train(X, Y, iterations, lr):
+    w = np.zeros((X.shape[1], 1))
+    for i in range(iterations):
+        print(f'Iteration {i:4d} => Loss: {loss(X, Y, w):.20f}')
+        w -= gradient(X, Y, w) * lr
+    return w
+
+w = train(data.X_train, data.Y_train, iterations=100, lr=1e-5)
+test(data.X_test, data.Y_test, w)
