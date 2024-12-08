@@ -1,0 +1,1 @@
+../06-mnist-5er/mnist.py
